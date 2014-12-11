@@ -14,19 +14,20 @@ feature "Manage Users" do
     )
   end
 
-  scenario "List no Users" do
+  scenario "Show admin page" do
     visit admin_path
     expect(page.find('.header')).to have_content(/Current Users/)
     expect(page).to have_content("No current users")
   end
 
-  scenario "List ALL Users" do
-    users = create_users
-    visit admin_path               # WHEN
-    expect(page.find('.current_users')).to have_content(/Dogs/)    # THEN
-    expect(page).to have_no_content("No posts available")
-  end
+end
 
+  # scenario "List ALL Users" do
+  #   users = create_users
+  #   visit admin_path               # WHEN
+  #   expect(page.find('.current_users')).to have_content(/Dogs/)    # THEN
+  #   expect(page).to have_no_content("No posts available")
+  # end
 #   scenario "Redirect to New Post Form" do
 #     visit posts_path
 
