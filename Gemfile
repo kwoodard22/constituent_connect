@@ -12,12 +12,14 @@ gem 'jbuilder', '~> 2.0'
 gem 'devise', '~> 3.4.1'
 gem 'bootstrap-sass', '~> 3.3.1.0'
 gem 'faker', '~> 1.4.3'
-gem 'capybara', '~> 2.4.4'
-gem 'rspec-rails', '~> 3.1.0'
-gem 'jasmine', '~> 2.1.0'
 gem 'sdoc', '~> 0.4.0',          group: :doc
-gem 'spring',        group: :development
 
+group :development, :test do
+  gem 'spring'   
+  gem 'capybara'
+  gem 'rspec-rails'
+  gem 'jasmine'
+end
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
