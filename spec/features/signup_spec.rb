@@ -1,23 +1,19 @@
 require 'rails_helper'
 
-feature "Manage Users" do 
-  def create_users
-    User.create!(                    # User1
-       user: 'Kelsey',
-       email: 'kelsey@congress.gov',
-       active_status: true
+feature "Sign Up an Office" do 
+  def create_office
+    Office.create!(
+      name: 'Congressman McCarthy'
     )
-    User.create!(                    # User2
-       user: 'John',
-       email: 'john@congress.gov',
-       active_status: true
+    Office.create!( 
+      name: 'Congressman Whitman'
     )
   end
 
   scenario "Show admin page" do
-    visit admin_path
-    expect(page.find('.header')).to have_content(/Current Users/)
-    expect(page).to have_content("No current users")
+    visit signup_path
+    expect(page.find('.header')).to have_content(/Constituent Connect/)
+    expect(page.find('.signup')).to have_content(/Register/)
   end
 
 end

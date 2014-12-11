@@ -4,6 +4,8 @@
 // Admin can view current users
 // Admin can "remove" a user
 
+// SEE JASMINE DOCUMENTATION FOR EXAMPLES
+
 
 describe("Users", function() {
   // var user;
@@ -16,10 +18,5 @@ describe("Users", function() {
     expect( User ).not.toBeUndefinied();
   });
 
-//   describe("when song has been paused", function() {
-//     beforeEach(function() {
-//       player.play(song);
-//       player.pause();
-//     });
 
-// });
+});
