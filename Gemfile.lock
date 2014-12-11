@@ -161,16 +161,16 @@ PLATFORMS
 
 DEPENDENCIES
   bootstrap-sass (~> 3.3.1.0)
-  capybara (~> 2.4.4)
+  capybara
   coffee-rails (~> 4.0.0)
   devise (~> 3.4.1)
   faker (~> 1.4.3)
-  jasmine (~> 2.1.0)
+  jasmine
   jbuilder (~> 2.0)
   jquery-rails
   pg
   rails (= 4.1.6)
-  rspec-rails (~> 3.1.0)
+  rspec-rails
   sass-rails (~> 4.0.3)
   sdoc (~> 0.4.0)
   spring
