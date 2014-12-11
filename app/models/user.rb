@@ -8,6 +8,18 @@ class User < ActiveRecord::Base
 
   belongs_to :office
 
+  def active_for_authentication? 
+    super && approved? 
+  end 
+
+  def inactive_message 
+    if !approved? 
+      :not_approved 
+    else 
+      super # Use whatever other message 
+    end 
+  end
+
   def self.admins
     where(is_admin: true)
   end

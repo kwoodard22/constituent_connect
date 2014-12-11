@@ -1,6 +1,6 @@
 <h2>Register Your Office</h2>
 
-<%= form_for(resource, as: :user, url: create_user_path, html: {class: "form01"}) do |f| %>
+<%= form_for @user, url: create_user_path, html: {class: "form01"} do |f| %>
   <%= devise_error_messages! %>
 
   <span class="label">Office:</span>
