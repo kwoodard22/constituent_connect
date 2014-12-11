@@ -1,0 +1,25 @@
+<h2>Add User</h2>
+
+<%= form_for(resource, as: resource_name, url: create_employee_path, html: {class: "form01"}) do |f| %>
+    <span class="label">Name:</span>
+    <%= f.text_field :name %>
+
+    <span class="label">Email</span>
+    <%= f.email_field :email  %>
+  
+    <span class="label">Password:</span>
+    <%= f.password_field :password %>
+
+    <span class="label">Password Confirmation:</span>
+    <div class="clear"></div>
+    <%= f.password_field :password_confirmation %>
+    <span class="label">Make this Employee an Admin</span>
+
+    <!-- IF COMPANY HAS ADMIN, THEN THIS SHOULD BE HIDDEN  -->
+    <%= f.check_box :is_admin %>
+
+    <%= f.hidden_field(:company_id, value: current_user.office_id) %>
+    <button type="sumbit" class="input_btn" value="signup">Sign up</button><br><br>
+    <a href="/" value="cancel">Cancel</a>
+    <!-- <input type="button" class="sub_btn" value="submit"> -->
+<% end %>

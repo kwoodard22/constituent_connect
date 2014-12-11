@@ -4,6 +4,16 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  # before_action :authenticate_user!
+  before_create :send_welcome_email
+
+  belongs_to :office
+
+  def self.admins
+    where(is_admin: true)
+  end
+
+  def self.staff
+    where(is_admin: false)
+  end
   
 end

@@ -1,29 +1,26 @@
-<h2>Sign up</h2>
+<h2>Register Your Office</h2>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+<%= form_for(resource, as: :user, url: create_user_path, html: {class: "form01"}) do |f| %>
   <%= devise_error_messages! %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
-  </div>
+  <span class="label">Office:</span>
+  <%= text_field_tag :office_name, nil %>
 
-  <div class="field">
-    <%= f.label :password %>
-    <% if @validatable %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-  </div>
+  <span class="label">Name:</span>
+  <%= f.text_field :name, class: "g_inpt" %>
+  
+  <span class="label">Email:</span>
+  <%= f.email_field :email %>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
-  </div>
+  <span class="label">Password:</span>
+  <%= f.password_field :password, class: "g_inpt" %>
+  
+  <span class="label">Password Confirmation:</span>
+  <div class="clear"></div>
+  <%= f.password_field :password_confirmation %>
+  <%= f.hidden_field(:is_admin, value: true) %>
+  <button type="sumbit" class="input_btn" value="signup">Sign up</button><br><br>
 
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
 <% end %>
 
 <%= render "devise/shared/links" %>
