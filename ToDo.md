@@ -6,6 +6,7 @@ TO DO
     def sign_up_params
     devise_parameter_sanitizer.sanitize(:sign_up)
   end
+  
 --> admin_mailer.rb
     - NEED TO FIND CORRECT SYNTAX FOR ADMIN
       mail(to: @office.users.where(admin: true).email, ...
