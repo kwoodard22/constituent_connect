@@ -1,8 +1,11 @@
 TO DO
 ======
---> welcome/new_user.html.erb
-    - NEED COLLECTION TO SHOW
 
+--> registrations_controller.rb
+    - DO I NEED TO SANITIZE THEM HERE OR AS I HAVE THEM IN APPLICATION_CONTROLLER?
+    def sign_up_params
+    devise_parameter_sanitizer.sanitize(:sign_up)
+  end
 --> admin_mailer.rb
     - NEED TO FIND CORRECT SYNTAX FOR ADMIN
       mail(to: @office.users.where(admin: true).email, ...
@@ -23,6 +26,10 @@ TO DO
 
 X --> new_office.html.erb
     - NEED OFFICE TO SAVE
+
+X --> welcome/new_user.html.erb
+    - NEED COLLECTION TO SHOW
+
 
 
 DON'T FORGET
