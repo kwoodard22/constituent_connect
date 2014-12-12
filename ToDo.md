@@ -1,8 +1,7 @@
 TO DO
 ======
-
---> new_office.html.erb
-    - NEED OFFICE TO SAVE
+--> welcome/new_user.html.erb
+    - NEED COLLECTION TO SHOW
 
 --> admin_mailer.rb
     - NEED TO FIND CORRECT SYNTAX FOR ADMIN
@@ -16,8 +15,14 @@ TO DO
     end
 
 --> Registrations_controller.rb
-    - REMOVED A LINE, DELTE COMMENT IF ALL IS WELL (which it should be because we've set the devise user scope in routes.rb)
+    - REMOVED A LINE SO DELTE COMMENT IF ALL IS WELL (which it should be because we've set the devise user scope in routes.rb)
     - # render "/new_office" --> I think this was defined in scope so it's unnecessary
+
+!!! DONE !!!
+============
+
+X --> new_office.html.erb
+    - NEED OFFICE TO SAVE
 
 
 DON'T FORGET

@@ -1,20 +1,15 @@
-<h1>READING FROM WELCOME FOLDER</h1>
-<h2>Register Your Office</h2>
+<h2>Add User</h2>
 
-<!-- Form creates OFFICE & office ADMIN user -->
 <%= form_for @user, url: create_user_path do |f| %>
   <%= devise_error_messages! %>
 
-  <%= f.fields_for :office do |office_form| %>
+  <span class="label">Office of:</span>
+  <%= collection_select( :user, :office_id, Office.all, :id, :name, {include_blank: false} ) %>  
 
-    <span class="label">Office of:</span>
-    <%= office_form.text_field :name %>
-  <% end %>
-
-  <span class="label">Admin Name:</span>
+  <span class="label">Name:</span>
   <%= f.text_field :name %>
   
-  <span class="label">Admin Email:</span>
+  <span class="label">Email:</span>
   <%= f.email_field :email %>
 
   <span class="label">Password:</span>
@@ -24,8 +19,7 @@
   <%= f.password_field :password_confirmation %>
 
   <!-- Sets user to ADMIN with Office creation -->
-  <%= f.hidden_field(:approved, value: true) %>
-  <%= f.hidden_field(:admin, value: true) %>
+  <%= f.hidden_field(:is_admin, value: true) %>
 
   <button type="sumbit" class="input_btn" value="signup">Sign up</button><br><br>
 

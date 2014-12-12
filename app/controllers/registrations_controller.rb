@@ -2,8 +2,14 @@ class RegistrationsController < Devise::RegistrationsController
 
   def new
     @user = User.new
-    # @office = Office.new
+    @user.office = Office.new
     render "welcome/new_office"
+  end
+
+  def new_user
+    @user = User.new
+    # @office = Office.new
+    render "welcome/new_user"
   end
 
    # GET /new_office
@@ -43,10 +49,12 @@ class RegistrationsController < Devise::RegistrationsController
     end
   end
 
+  
+
   def sign_up_params
-    office = Office.create(name:params[:office_name])
+    office = Office.create(name:params[:user][:office_attributes][:name])
     params[:user][:office_id] = office.id
-    params.require(:user).permit(:name, :office_id, :email, :password, :password_confirmation)
+    params.require(:user).permit(:name, :office_id, :email, :password, :password_confirmation, :admin)
   end
 
 
