@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
   get 'office/index'
 
-  get 'user/index'
+  get '/dashboard', to: 'user#user_dashboard'
 
   get 'admin/index'
 

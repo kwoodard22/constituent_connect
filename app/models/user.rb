@@ -37,11 +37,11 @@ class User < ActiveRecord::Base
 
   ##### THESE ARE ADDITIONAL #####
   def self.admins
-    where(is_admin: true)
+    where(admin: true)
   end
 
   def self.staff
-    where(is_admin: false)
+    where(admin: false)
   end
   
 end

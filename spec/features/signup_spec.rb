@@ -1,19 +1,19 @@
 require 'rails_helper'
 
-feature "Sign Up an Office" do 
+feature "Register Office" do 
   def create_office
     Office.create!(
       name: 'Congressman McCarthy'
     )
-    Office.create!( 
-      name: 'Congressman Whitman'
+    User.create!( 
+      name: 'John Doe'
     )
   end
 
-  scenario "Show admin page" do
+  scenario "Show signup page" do
     visit signup_path
-    expect(page.find('.header')).to have_content(/Constituent Connect/)
-    expect(page.find('.signup')).to have_content(/Register/)
+    expect(page.find('.header')).to have_content(/Register Your Office/)
+    expect(page.find('.label')).to have_content(/Office of/)
   end
 
 end
