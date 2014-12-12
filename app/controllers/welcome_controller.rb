@@ -5,7 +5,7 @@ class WelcomeController < ApplicationController
       if current_user.admin?
         render 'admin'
       else
-        render 'staff'
+        render 'user'
       end
     end
   end

@@ -1,6 +1,10 @@
 <h2>Add User</h2>
 
 <%= form_for(resource, as: resource_name, url: create_employee_path, html: {class: "form01"}) do |f| %>
+    
+    <span class="label">Office of:</span>
+    <%= f.collection_select(:office_id, Office.all, :id, :name, include_blank: false) %>
+
     <span class="label">Name:</span>
     <%= f.text_field :name %>
 
@@ -17,6 +21,8 @@
 
     <!-- IF COMPANY HAS ADMIN, THEN THIS SHOULD BE HIDDEN  -->
     <%= f.check_box :is_admin %>
+
+    <!-- DROPDOWN TO SELECT OFFICE  -->
 
     <%= f.hidden_field(:company_id, value: current_user.office_id) %>
     <button type="sumbit" class="input_btn" value="signup">Sign up</button><br><br>

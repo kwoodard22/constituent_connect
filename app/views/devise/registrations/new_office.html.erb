@@ -1,10 +1,14 @@
+
 <h2>Register Your Office</h2>
 
-<%= form_for @user, url: create_user_path, html: {class: "form01"} do |f| %>
+<%= form_for @user, url: create_user_path do |f| %>
   <%= devise_error_messages! %>
 
-  <span class="label">Office:</span>
-  <%= text_field_tag :office_name, nil %>
+  <%= f.fields_for :office do |office| %>
+
+    <span class="label">Office:</span>
+    <%= office.text_field :name %>
+  <% end %>
 
   <span class="label">Name:</span>
   <%= f.text_field :name, class: "g_inpt" %>
@@ -19,6 +23,7 @@
   <div class="clear"></div>
   <%= f.password_field :password_confirmation %>
   <%= f.hidden_field(:is_admin, value: true) %>
+
   <button type="sumbit" class="input_btn" value="signup">Sign up</button><br><br>
 
 <% end %>

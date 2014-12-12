@@ -4,9 +4,23 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  before_create :send_welcome_email
-
   belongs_to :office
+  after_create :send_admin_mail
+  
+  # https://github.com/plataformatec/devise/wiki/How-To%3a-Require-admin-to-activate-account-before-sign_in
+  def send_admin_mail # SET UP WITH ACTION MAILER
+    AdminMailer.new_user_waiting_for_approval(self).deliver
+  end
+
+  def self.send_reset_password_instructions(attributes={})
+    recoverable = find_or_initialize_with_errors(reset_password_keys, attributes, :not_found)
+    if !recoverable.approved?
+      recoverable.errors[:base] << I18n.t("devise.failure.not_approved")
+    elsif recoverable.persisted?
+      recoverable.send_reset_password_instructions
+    end
+    recoverable
+  end
 
   def active_for_authentication? 
     super && approved? 
@@ -20,12 +34,12 @@ class User < ActiveRecord::Base
     end 
   end
 
-  def self.admins
-    where(is_admin: true)
-  end
+  # def self.admins
+  #   where(is_admin: true)
+  # end
 
-  def self.staff
-    where(is_admin: false)
-  end
+  # def self.staff
+  #   where(is_admin: false)
+  # end
   
 end

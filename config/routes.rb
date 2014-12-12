@@ -1,12 +1,16 @@
 Rails.application.routes.draw do
 
+  get 'user/index'
+
+  get 'admin/index'
+
   root 'welcome#landing'
 
   devise_scope :user do
-    get '/signup', to: 'registrations#new'
-    post '/new_office', to: 'registrations#create', as: :create_office
-    get '/add_staff', to: 'registrations#new_staff', as: :new_staff
-    post '/create_staff', to: 'registrations#create_staff', as: :create_staff
+    get '/new_office', to: 'registrations#new_office'
+    post '/create_office', to: 'registrations#create_office', as: :create_office
+    get '/new_user', to: 'registrations#new_user', as: :new_user
+    post '/create_user', to: 'registrations#create_user', as: :create_user
   end
 
   devise_for :users
