@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   belongs_to :office
+  accepts_nested_attributes_for :office
   after_create :send_admin_mail
   
   # https://github.com/plataformatec/devise/wiki/How-To%3a-Require-admin-to-activate-account-before-sign_in
@@ -34,12 +35,13 @@ class User < ActiveRecord::Base
     end 
   end
 
-  # def self.admins
-  #   where(is_admin: true)
-  # end
+  ##### THESE ARE ADDITIONAL #####
+  def self.admins
+    where(is_admin: true)
+  end
 
-  # def self.staff
-  #   where(is_admin: false)
-  # end
+  def self.staff
+    where(is_admin: false)
+  end
   
 end

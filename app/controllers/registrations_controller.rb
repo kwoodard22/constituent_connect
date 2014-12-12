@@ -1,22 +1,24 @@
 class RegistrationsController < Devise::RegistrationsController
 
-  # GET /user/signup
+  def new
+    @user = User.new
+    # @office = Office.new
+    render "welcome/new_office"
+  end
+
+   # GET /new_office
   def new_office
     build_resource({})
+     @office = Office.new
     @validatable = devise_mapping.validatable?
     if @validatable
       @minimum_password_length = resource_class.password_length.min
     end
-    render "devise/registrations/new_office" #need to change
-  end
-  
-  def new
-    @user = User.new
-    render "welcome/sign"
+    # render "/new_office" --> I think this was defined in scope so it's unnecessary
   end
 
   # POST /resource
-  def create_user
+  def create
     build_resource(sign_up_params)
 
     resource_saved = resource.save
@@ -41,11 +43,10 @@ class RegistrationsController < Devise::RegistrationsController
     end
   end
 
-
-  def new_user
-    @user = User.new
-    @office = Office.new
-    render "welcome/signup_page"
+  def sign_up_params
+    office = Office.create(name:params[:office_name])
+    params[:user][:office_id] = office.id
+    params.require(:user).permit(:name, :office_id, :email, :password, :password_confirmation)
   end
 
 

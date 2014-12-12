@@ -1,8 +1,8 @@
-
+<h1>READING FROM WELCOME FOLDER</h1>
 <h2>Register Your Office</h2>
 
 <!-- Form creates OFFICE & office ADMIN user -->
-<%= form_for @user, url: create_path do |f| %>
+<%= form_for @user, url: create_user_path do |f| %>
   <%= devise_error_messages! %>
 
   <%= f.fields_for Office.new do |office_form| %>
