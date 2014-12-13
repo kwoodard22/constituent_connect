@@ -1,5 +1,5 @@
 <h1>Welcome to Constituent Connect</h1>
-
+<div class="container">
 <% if current_user %>
 <h1><%= current_user.email  %> </h1>
 <% end %>
@@ -8,3 +8,4 @@
 <%= link_to "New User Sign Up", new_user_path %>
 
 <%= link_to "Log in", new_user_session_path %>
+</div>
