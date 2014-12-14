@@ -12,6 +12,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'devise', '~> 3.4.1'
 gem 'pry'
 gem 'bootstrap-sass', '~> 3.3.1.0'
+gem 'angularjs-rails', '~> 1.3.36'
 gem 'faker', '~> 1.4.3'
 gem 'sdoc', '~> 0.4.0',          group: :doc
 
