@@ -2,13 +2,45 @@
   <h1>DASHBOARD</h1>
 </div>
 
-<div class="recent_calls">
-  <h3>Recent Calls</h3>
+<div class="col-md-8">
+  <h3>Add Call</h3>
+  <div class="container">
+    <%= form_for @call, url: {action: "create_call"} do |f| %>
+
+      <%= f.fields_for :phone_number do |phone_number| %>
+        <span class="label">Phone Number:</span>
+        <%= phone_number.text_field :phone_number %>
+      <% end %><br>
+
+      <%= f.fields_for :category do |category| %>
+        <span class="label">Category:</span>
+        <%= category.text_field :category %>
+      <% end %><br>
+
+      <%= f.fields_for :sub_category do |sub_category| %>
+        <span class="label">Sub Category:</span>
+        <%= sub_category.text_field :sub_category %>
+      <% end %><br>
+
+      <button type="sumbit" class="input_btn" value="new_call">Add Call</button><br><br>
+
+    <% end %>
+  </div>
+
 </div>  
 
-<div class="add_call">
-  <h3>Add Call</h3>
+<div class="col-md-4">
+  <h3>Recent Calls</h3>
+  <ul>
+    <% @calls.each do |call| %>
+      <!-- Print div -->
+      <li><%= call.category.category %></li>
+      <li><%= number_to_phone(call.phone_number.phone_number) %></li>
+    <% end %>
+  </ul>
 </div>  
+
+
 
 
 

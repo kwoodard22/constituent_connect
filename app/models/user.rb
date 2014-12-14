@@ -1,10 +1,11 @@
 class User < ActiveRecord::Base
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
+  
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
   belongs_to :office
+  has_many :calls
+  
   accepts_nested_attributes_for :office
   after_create :send_admin_mail
   

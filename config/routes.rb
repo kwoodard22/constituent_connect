@@ -8,6 +8,11 @@ Rails.application.routes.draw do
 
   root 'welcome#landing'
 
+  resources :call, :cateory, :sub_category
+
+  resources :phone, only: [:index, :new, :create]
+
+
   devise_scope :user do
     get '/signup', to: 'registrations#new'
     get '/add_user', to: 'registrations#new_user', as: :new_user
