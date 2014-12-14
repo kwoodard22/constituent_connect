@@ -1,0 +1,8 @@
+<h2>Recent Calls</h2>
+
+<ul>
+<%= @calls.each do |call| %>
+  <li><%= call.category.category %></li>
+  <li><%= call.phone_number.phone_number %></li>
+<% end %>
+</ul>

@@ -5,6 +5,8 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   belongs_to :office
+  has_many :calls
+  
   accepts_nested_attributes_for :office
   after_create :send_admin_mail
   

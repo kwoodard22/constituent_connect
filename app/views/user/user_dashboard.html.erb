@@ -4,10 +4,18 @@
 
 <div class="recent_calls">
   <h3>Recent Calls</h3>
+  <ul>
+    <% @calls.each do |call| %>
+      <!-- Print div -->
+      <li><%= call.category.category %></li>
+      <li><%= number_to_phone(call.phone_number.phone_number) %></li>
+    <% end %>
+  </ul>
 </div>  
 
 <div class="add_call">
   <h3>Add Call</h3>
+
 </div>  
 
 
