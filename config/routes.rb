@@ -8,6 +8,11 @@ Rails.application.routes.draw do
 
   resources :call
 
+  scope :api do
+    resources :call, only: [:index], defaults: {format: :json}
+    resources :category, only: [:index], defaults: {format: :json}
+  end
+
   devise_scope :user do
     get '/signup', to: 'registrations#new'
     get '/add_user', to: 'registrations#new_user', as: :new_user

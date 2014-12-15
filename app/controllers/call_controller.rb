@@ -1,9 +1,10 @@
 class CallController < ApplicationController
+  respond_to :json
 
   def call_dashboard
     @call = Call.new
     @user = current_user
-    @calls = Office.where(id: @user.office_id)[0].calls.limit(10)
+    # @calls = Office.where(id: @user.office_id)[0].calls.limit(10)
   end
 
   def show
@@ -11,7 +12,7 @@ class CallController < ApplicationController
   end
 
   def index
-    @calls = Call.all
+    respond_with Call.all
   end
 
   def create
