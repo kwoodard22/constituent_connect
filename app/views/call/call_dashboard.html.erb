@@ -40,16 +40,18 @@
     </div>
   </div>  
 
-  <div ng-controller="CallLogController as call">
+  <div ng-controller="CallLogControllerTest as log">
     <div class="col-md-4">
       <div class="container-fluid recent-calls">
-        <h3>Recent Calls </h3>
         <p> {{ 4 + 6 }} </p>
-        <ul>
-          <li ng-repeat='call in callLog'> 
-            {{ test.category }} 
-          </li>
-        </ul>
+        <section>
+          <ul class="nav nav-pills">
+            <li> <a href ng-click="tab = 1">Calls</a> </li>
+            <li> <a href ng-click="tab = 2">Bills</a> </li>
+            <li> <a href ng-click="tab = 3">Caller</a> </li>
+          </ul>
+          {{ tab }}
+        </section>
       </div>
     </div>
   </div>  
