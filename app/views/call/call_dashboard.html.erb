@@ -3,28 +3,35 @@
 </div>
 
 <div ng-app="Dashboard">
-  <div ng-controller="addCallController">
-    <div class="col-md-8">
-      <h3>Add Call</h3>
-        <input type="text" class="form-control" ng-model="phoneNum"><br>
-        <input type="text" class="form-control" ng-model="category"><br>
-        <input type="text" class="form-control" ng-model="forOrAgainst"><br>
-        <input type="text" class="form-control" ng-model="subCategory"><br>
-        {{ phoneNum }}<br>
-        {{ category }}<br>
-        {{ forOrAgainst }}<br>
-        {{ subCategory }}<br>
-    </div>  
+  <form>
+    <div ng-controller="addCallController">
+      <div class="col-md-4">
+        <h3>Add Call</h3>
+          <input type="text" class="form-control" ng-model="phoneNum" placeholder="Phone Number (i.e. 123-4566-7890)"><br>
+          <input type="text" class="form-control" ng-model="category" placeholder="Category"><br>
+          <input type="text" class="form-control" ng-model="subCategory" placeholder="Sub-Category"><br>
+          <input type="text" class="form-control" ng-model="forOrAgainst" placeholder="For or Against"><br>
+          {{ phoneNum }}<br>
+          {{ category }}<br>
+          {{ subCategory }}<br>
+          {{ forOrAgainst }}<br>
+          <input type="submit" value="Add">
+      </div>  
+    </div>
+  </form>
+
+  <div class="col-md-4">
   </div>
 
-  <div ng-controller="callLogController as log">
+  <div ng-controller="callLogController">
     <p> {{ 4 + 6 }}</p>
     <div class="col-md-4">
       <div class="container-fluid recent-calls">
         <h3>Recent Calls</h3>
         <ul>
-          <li> {{ log.call.category }} </li>
-          <li> {{ log.call.phoneNumber }} </li>
+          <li ng-repeat='call in calls'> 
+            {{ call.category }} 
+          </li>
         </ul>
       </div>
     </div>
