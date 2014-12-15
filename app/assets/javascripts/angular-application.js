@@ -1,5 +1,5 @@
 //= require_self
-//= require_tree ./angular
+//= require_tree ./angular/controllers
 
-Dashboard = angular.module("Dashboard", []);
 
+Dashboard = angular.module('Dashboard', []);

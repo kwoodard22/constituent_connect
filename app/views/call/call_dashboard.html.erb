@@ -2,27 +2,44 @@
   <h1>CALL DASHBOARD</h1>
 </div>
 
-<div ng-app="Dashboard" ng-controller="AddCallController">
-  <div class="col-md-8">
-    <h3>Add Call</h3>
-      <p>Type in the input box.</p>
-      <input type="text" class="form-control" ng-model="myText">
-      {{ myText }}
-      
-      <%= render "add_call_form" %>
+<div ng-app="Dashboard">
+  <div ng-controller="addCallController">
+    <div class="col-md-8">
+      <h3>Add Call</h3>
+        <input type="text" class="form-control" ng-model="phoneNum"><br>
+        <input type="text" class="form-control" ng-model="category"><br>
+        {{ phoneNum }}<br>
+        {{ category }}
+        
+        <%= render "add_call_form" %>
 
+    </div>  
+  </div>
+
+  <div ng-controller="callLogController as log">
+    <p> {{ 4 + 6 }}</p>
+    <div class="col-md-4">
+      <div class="container-fluid recent-calls">
+        <h3>Recent Calls</h3>
+        <ul>
+          <li> {{ log.call.category }} </li>
+          <li> {{ log.call.phoneNumber }} </li>
+        </ul>
+      </div>
+    </div>
   </div>  
 </div>
 
+<!-- 
 <div class="col-md-4">
   <div class="container-fluid recent-calls">
     <h3>Recent Calls</h3>
     <ul>
-      <% @calls.each do |call| %>
-        <!-- Print div -->
-        <li><%= call.category.category %></li>
-        <li><%= number_to_phone(call.phone_number) %></li>
-      <% end %>
+      @calls.each do |call| %>
+        <li> call.category.category %></li>
+        <li> number_to_phone(call.phone_number) %></li>
+       end %>
     </ul>
   </div>
-</div>  
+</div> 
+-->
