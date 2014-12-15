@@ -2,6 +2,7 @@ class CallController < ApplicationController
 
   def new
     @call = Call.new
+    @phone_number = PhoneNumber.new
   end
 
   def show
@@ -42,7 +43,10 @@ class CallController < ApplicationController
   private
 
   def call_params
-    params.require(:call).permit(phone_number_attributes: [ :phone_number])
+    params.require(:call).permit(phone_number_attributes: [:phone_number], 
+                                 category_attributes: [:category], 
+                                 sub_category_attributes: [:sub_category],
+                                 user_attributes: [:id])
   end
 
 end

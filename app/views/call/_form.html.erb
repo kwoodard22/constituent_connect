@@ -1,0 +1,34 @@
+<h2>Add Call</h2>
+
+<div class="container-fluid">
+  <%= form_for @phone_number do |f| %>
+
+    <!-- ERROR ALERT -->
+    <% if @call.errors.any? %>
+      <div class="alert alert-danger">
+        <h4><%= pluralize(@call.errors.count, "error") %></h4>
+        <ul>
+          <% @call.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul> 
+      </div>
+    <% end %>
+    <!-- End Error Alert -->
+
+
+    <span class="label">Phone Number:</span>
+    <%= f.text_field :phone_number %>
+
+
+    <%= f.fields_for :category do |category| %>
+      <span class="label">Category:</span>
+      <%= category.text_field :category %>
+    <% end %>
+
+    <!-- Not working for sub-category -->
+
+    <button type="sumbit" class="btn btn-primary value="newcall">Add Call</button><br><br>
+
+  <% end %>
+</div>

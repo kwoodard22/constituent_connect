@@ -7,8 +7,10 @@ class Call < ActiveRecord::Base
   belongs_to :user
   belongs_to :category
 
+  has_one :sub_category, through: :category
+
 
   
-  accepts_nested_attributes_for :phone_number
+  accepts_nested_attributes_for :phone_number, :category, :sub_category, :user
   
 end

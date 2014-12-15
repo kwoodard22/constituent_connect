@@ -4,11 +4,11 @@ Rails.application.routes.draw do
 
   get '/dashboard', to: 'user#user_dashboard'
 
-  get 'admin/index'
-
   root 'welcome#landing'
 
-  resources :call, :cateory, :sub_category
+  resources :call
+
+  resources :cateory, :sub_category
 
   resources :phone, only: [:index, :new, :create]
 

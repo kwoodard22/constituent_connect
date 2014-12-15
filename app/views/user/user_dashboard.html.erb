@@ -2,12 +2,15 @@
   <h1>DASHBOARD</h1>
 </div>
 
-<div ng-app>
+<div ng-app="Dashboard" ng-controller="AddCallController">
   <div class="col-md-8">
     <h3>Add Call</h3>
       <p>Type in the input box.</p>
       <input type="text" class="form-control" ng-model="myText">
       {{ myText }}
+
+      <%= render "call/form" %>
+
   </div>  
 </div>
 

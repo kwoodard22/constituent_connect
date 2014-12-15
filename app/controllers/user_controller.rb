@@ -6,7 +6,7 @@ class UserController < ApplicationController
     @calls = Office.where(id: @user.office_id)[0].calls.limit(10)
   end
 
-  def create_call
+  def create
     @call = Call.new(call_params)
     @call.user_id = current_user.id
 
