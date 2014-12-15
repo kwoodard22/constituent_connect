@@ -4,12 +4,9 @@ Rails.application.routes.draw do
 
   get '/dashboard', to: 'call#call_dashboard'
 
+  get '/report', to: 'report#show'
+
   resources :call
-
-  resources :cateory, :sub_category
-
-  resources :phone, only: [:index, :new, :create]
-
 
   devise_scope :user do
     get '/signup', to: 'registrations#new'
