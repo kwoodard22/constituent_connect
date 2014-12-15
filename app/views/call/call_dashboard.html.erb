@@ -23,31 +23,37 @@
   <div class="col-md-4">
   </div>
 
-  <div ng-controller="callLogController">
-    <p> {{ 4 + 6 }}</p>
+  <div class="col-md-4">
+    <div class="container-fluid recent-calls">
+      <div ng-controller="CallLogControllerTest as log">
+        <h3>Recent Calls TEST</h3>
+        <p> {{ 4 + 6 }}</p>
+        <ul class="list-group">
+          <div ng-repeat="call in log.calls | limitTo:10"> 
+            <li class="list-group-item"> 
+              {{ call.category }}<br>
+              {{ call.phoneNumber}}
+            </li>
+          </div>
+        </ul>
+      </div>
+    </div>
+  </div>  
+
+  <div ng-controller="CallLogController as call">
     <div class="col-md-4">
       <div class="container-fluid recent-calls">
-        <h3>Recent Calls</h3>
+        <h3>Recent Calls </h3>
+        <p> {{ 4 + 6 }} </p>
         <ul>
-          <li ng-repeat='call in calls'> 
-            {{ call.category }} 
+          <li ng-repeat='call in callLog'> 
+            {{ test.category }} 
           </li>
         </ul>
       </div>
     </div>
   </div>  
-</div>
 
-<!-- 
-<div class="col-md-4">
-  <div class="container-fluid recent-calls">
-    <h3>Recent Calls</h3>
-    <ul>
-      @calls.each do |call| %>
-        <li> call.category.category %></li>
-        <li> number_to_phone(call.phone_number) %></li>
-       end %>
-    </ul>
-  </div>
-</div> 
--->
+   
+  
+</div>
