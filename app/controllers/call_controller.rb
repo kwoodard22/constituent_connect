@@ -1,8 +1,9 @@
 class CallController < ApplicationController
 
-  def new
+  def call_dashboard
     @call = Call.new
-    @phone_number = PhoneNumber.new
+    @user = current_user
+    @calls = Office.where(id: @user.office_id)[0].calls.limit(10)
   end
 
   def show
@@ -43,10 +44,9 @@ class CallController < ApplicationController
   private
 
   def call_params
-    params.require(:call).permit(phone_number_attributes: [:phone_number], 
+    params.require(:call).permit(:phone_number, 
                                  category_attributes: [:category], 
-                                 sub_category_attributes: [:sub_category],
-                                 user_attributes: [:id])
+                                 sub_category_attributes: [:sub_category])
   end
 
 end

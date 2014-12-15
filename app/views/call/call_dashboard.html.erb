@@ -1,5 +1,5 @@
 <div class="title">
-  <h1>DASHBOARD</h1>
+  <h1>CALL DASHBOARD</h1>
 </div>
 
 <div ng-app="Dashboard" ng-controller="AddCallController">
@@ -8,8 +8,8 @@
       <p>Type in the input box.</p>
       <input type="text" class="form-control" ng-model="myText">
       {{ myText }}
-
-      <%= render "call/form" %>
+      
+      <%= render "add_call_form" %>
 
   </div>  
 </div>
@@ -21,14 +21,8 @@
       <% @calls.each do |call| %>
         <!-- Print div -->
         <li><%= call.category.category %></li>
-        <li><%= number_to_phone(call.phone_number.phone_number) %></li>
+        <li><%= number_to_phone(call.phone_number) %></li>
       <% end %>
     </ul>
   </div>
 </div>  
-
-
-
-
-
-

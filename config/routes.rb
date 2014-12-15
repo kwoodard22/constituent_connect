@@ -1,10 +1,8 @@
 Rails.application.routes.draw do
 
-  get 'office/index'
-
-  get '/dashboard', to: 'user#user_dashboard'
-
   root 'welcome#landing'
+
+  get '/dashboard', to: 'call#call_dashboard'
 
   resources :call
 
