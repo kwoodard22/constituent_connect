@@ -1,17 +1,17 @@
 Rails.application.routes.draw do
 
-  get 'office/index'
-
-  get '/dashboard', to: 'user#user_dashboard'
-
-  get 'admin/index'
-
   root 'welcome#landing'
 
-  resources :call, :cateory, :sub_category
+  get '/dashboard', to: 'call#call_dashboard'
 
-  resources :phone, only: [:index, :new, :create]
+  get '/report', to: 'report#show'
 
+  resources :call
+
+  scope :api do
+    resources :call, only: [:index], defaults: {format: :json}
+    resources :category, only: [:index], defaults: {format: :json}
+  end
 
   devise_scope :user do
     get '/signup', to: 'registrations#new'

@@ -1,3 +1,10 @@
-// Place all the styles related to the call controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.recent-calls {
+  background-color: gray;
+  border-radius: 10px;
+  height: 80vh;
+  margin-bottom: 10%;
+}
+
+.recent-calls ul {
+  list-style: none;
+}

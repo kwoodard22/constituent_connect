@@ -10,8 +10,10 @@ gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'devise', '~> 3.4.1'
-gem 'pry'
 gem 'bootstrap-sass', '~> 3.3.1.0'
+gem 'bootstrap_form'
+gem 'angularjs-rails', '~> 1.3.36'
+gem 'active_model_serializers', '~> 0.9.2'
 gem 'faker', '~> 1.4.3'
 gem 'sdoc', '~> 0.4.0',          group: :doc
 
@@ -20,6 +22,7 @@ group :development, :test do
   gem 'capybara'
   gem 'rspec-rails'
   gem 'jasmine'
+  gem 'pry-rails'
 end
 
 # Use ActiveModel has_secure_password

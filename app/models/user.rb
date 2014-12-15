@@ -36,13 +36,5 @@ class User < ActiveRecord::Base
     end 
   end
 
-  ##### THESE ARE ADDITIONAL #####
-  def self.admins
-    where(admin: true)
-  end
-
-  def self.staff
-    where(admin: false)
-  end
   
 end

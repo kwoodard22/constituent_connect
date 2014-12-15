@@ -21,33 +21,22 @@ ActiveRecord::Schema.define(version: 20141215171121) do
     t.datetime "updated_at"
     t.integer  "user_id"
     t.string   "phone_number"
+<<<<<<< HEAD
     t.string   "category"
     t.string   "position"
     t.string   "sub_category"
   end
 
   create_table "categories", force: true do |t|
+=======
+>>>>>>> 2be646659606a2af92ed74ecf17fb1c654a4dbaf
     t.string   "category"
     t.string   "position"
-    t.integer  "sub_category_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string   "sub_category"
   end
 
   create_table "offices", force: true do |t|
     t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "phone_numbers", force: true do |t|
-    t.string   "phone_number"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "sub_categories", force: true do |t|
-    t.string   "sub_category"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
