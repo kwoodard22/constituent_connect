@@ -11,41 +11,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141214145414) do
+ActiveRecord::Schema.define(version: 20141215171121) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "calls", force: true do |t|
-    t.integer  "phone_number_id"
-    t.integer  "category_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
-  end
-
-  create_table "categories", force: true do |t|
+    t.string   "phone_number"
     t.string   "category"
     t.string   "position"
-    t.integer  "sub_category_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string   "sub_category"
   end
 
   create_table "offices", force: true do |t|
     t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "phone_numbers", force: true do |t|
-    t.string   "phone_number"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "sub_categories", force: true do |t|
-    t.string   "sub_category"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

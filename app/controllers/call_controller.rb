@@ -1,7 +1,10 @@
 class CallController < ApplicationController
+  respond_to :json
 
-  def new
+  def call_dashboard
     @call = Call.new
+    @user = current_user
+    # @calls = Office.where(id: @user.office_id)[0].calls.limit(10)
   end
 
   def show
@@ -9,7 +12,7 @@ class CallController < ApplicationController
   end
 
   def index
-    @calls = Call.all
+    respond_with Call.all
   end
 
   def create
@@ -42,7 +45,9 @@ class CallController < ApplicationController
   private
 
   def call_params
-    params.require(:call).permit(phone_number_attributes: [ :phone_number])
+    params.require(:call).permit(:phone_number, 
+                                 category_attributes: [:category], 
+                                 sub_category_attributes: [:sub_category])
   end
 
 end

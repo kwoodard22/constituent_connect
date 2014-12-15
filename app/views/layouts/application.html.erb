@@ -7,6 +7,18 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+
+  <% flash.each do |key, value| %>
+    <div class="alert alert-<%= key %>">
+      <a href="#" data-dismiss="alert" class="close">×</a>
+        <ul>
+          <li>
+            <%= value %>
+          </li>
+        </ul>
+    </div>
+  <% end %>
+
  <header class="navbar navbar-default" id='header'>
   <div class="container-fluid">
     <div class="navbar-header">
@@ -15,18 +27,21 @@
             Office of <%= current_user.office.name %>        
           </a>
       <% else %>
-        <a id="logoHeader"class="navbar-brand" href="/dashboard">
+        <a id="logoHeader"class="navbar-brand" href="/">
           Constituent Connect
         </a>
       <% end %>
     </div>
-    <div id="logo" class="nav navbar-nav navbard-center">
+    <div id="logo" class="nav navbar-nav">
       <%= image_tag("congress_logo.png") %>
     </div>   
       <ul id="navLinks" class="nav navbar-nav navbar-right">
         <% if current_user %>
-          <li>Logged in as <%= current_user.email %></li>
+          <li><%= link_to "Logged in as " + current_user.email, root_path %></li>
+          <li><%= link_to "Report", report_path %></li>
           <li><%= link_to "Log Out",  destroy_user_session_path, method: :delete %></li>
+        <% else %>          
+          <li><%= link_to "Log in", new_user_session_path %></li>
         <% end %>
       </ul>
   </div>
