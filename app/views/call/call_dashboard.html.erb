@@ -3,22 +3,29 @@
 </div>
 
 <div ng-app="Dashboard">
-  <form>
+  <div class="col-md-4">
     <div ng-controller="addCallController">
-      <div class="col-md-4">
+      <form name="reviewForm" ng-controller="ReviewController as reviewCtrl" ng-submit="reviewCtrl.addReview(call)" novalidate>
         <h3>Add Call</h3>
-          <input type="text" class="form-control" ng-model="phoneNum" placeholder="Phone Number (i.e. 123-4566-7890)"><br>
-          <input type="text" class="form-control" ng-model="category" placeholder="Category"><br>
-          <input type="text" class="form-control" ng-model="subCategory" placeholder="Sub-Category"><br>
-          <input type="text" class="form-control" ng-model="forOrAgainst" placeholder="For or Against"><br>
-          {{ phoneNum }}<br>
-          {{ category }}<br>
-          {{ subCategory }}<br>
-          {{ forOrAgainst }}<br>
-          <input type="submit" value="Add">
-      </div>  
-    </div>
-  </form>
+          <input type="text" class="form-control" ng-model="reviewCtrl.review.phoneNum" required placeholder="Phone Number (i.e. 123-4566-7890)"><br>
+          <input type="text" class="form-control" ng-model="reviewCtrl.review.category" required placeholder="Category"><br>
+          <input type="text" class="form-control" ng-model="reviewCtrl.review.subCategory" placeholder="Sub-Category"><br>
+          <select ng-model="reviewCtrl.review.position" required>
+            <option value="In Favor Of">In Favor Of</option>
+            <option value="Opposed">Opposed</option>
+          </select><br><br>
+          <blockquote>
+            <b>Phone:</b>  {{ reviewCtrl.review.phoneNum}}<br>
+            <b>Category:</b>  {{ reviewCtrl.review.category }}<br>
+            <b>Sub-Category:</b>  {{ reviewCtrl.review.subCategory}}<br>
+            <b>Position:</b>  {{ reviewCtrl.review.position}}<br>
+          </blockquote>
+          <div> reviewForm is {{review.Form.$valid}}</div>
+          <input type="submit" value="Submit">
+        </form>
+    </div>  
+  </div>
+
 
   <div class="col-md-4">
   </div>
@@ -43,19 +50,47 @@
   <div ng-controller="CallLogControllerTest as log">
     <div class="col-md-4">
       <div class="container-fluid recent-calls">
-        <p> {{ 4 + 6 }} </p>
-        <section>
+        <section ng-init="tab = 1" ng-controller="PanelController as panel">
           <ul class="nav nav-pills">
-            <li> <a href ng-click="tab = 1">Calls</a> </li>
-            <li> <a href ng-click="tab = 2">Bills</a> </li>
-            <li> <a href ng-click="tab = 3">Caller</a> </li>
+            <li ng-class="{ active: panel.isSelected(1) }"> 
+              <a href ng-click="panel.selectTab(1)">Calls</a> 
+            </li>
+            <li ng-class="{ active: panel.isSelected(2) }">
+              <a href ng-click="panel.selectTab(2)">Bills</a> 
+            </li>
+            <li ng-class="{ active: panel.isSelected(3) }"> 
+              <a href ng-click="panel.selectTab(3)">Caller</a>
+            </li>
           </ul>
-          {{ tab }}
+        <h3 ng-show="panel.isSelected(1)">Recent Calls</h3>
+        <h3 ng-show="panel.isSelected(2)">Active Bills</h3>
+        <h3 ng-show="panel.isSelected(3)">Caller Info</h3>
+        <div class="panel" ng-show="panel.isSelected(1)">          
+          <ul class="list-group" ng-repeat="call in log.calls | limitTo:10">
+            <li class="list-group-item">
+              {{call.category}}<br>
+              {{call.phoneNumber}}
+            </li>
+          </ul>
+        </div>
+
+        <div class="panel" ng-show="panel.isSelected(2)">
+          <h4>[search query here]</h4>
+          <ul class="list-group" ng-repeat="call in log.calls | limitTo:10">
+            <li class="list-group-item">
+              {{call.category}}<br>
+              {{call.phoneNumber}}
+            </li>
+          </ul>
+        </div>
+        <div class="panel" ng-show="panel.isSelected(3)">
+          <h4>Current Caller</h4>
+          <p> [Caller info] </p>
+        </div>
         </section>
       </div>
     </div>
-  </div>  
-
-   
+  </div>     
   
 </div>
+

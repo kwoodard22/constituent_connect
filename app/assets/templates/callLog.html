@@ -1,0 +1,10 @@
+ <h3>Recent Calls TEST</h3>
+  <p> {{ 4 + 6 }}</p>
+  <ul class="list-group">
+    <div ng-repeat="call in log.calls | limitTo:10">
+      <li class="list-group-item">
+        {{ call.category }}<br>
+        {{ call.phoneNumber}}
+      </li>
+    </div>
+  </ul>
