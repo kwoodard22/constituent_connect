@@ -6,7 +6,8 @@
 
 var Dashboard = angular.module('Dashboard', ['ngResource']);
 
-Dashboard.factory('Call', ['$resource',
+// FACTORY
+Dashboard.factory('Calls', ['$resource',
   function($resource) {
     return $resource('/call.json', {}, {
       query: {
@@ -15,6 +16,28 @@ Dashboard.factory('Call', ['$resource',
       },
       create: {
         method: 'POST'
+      }
+    });
+  }
+]);
+
+Dashboard.factory('Call', ['$resource',
+  function($resource) {
+    return $resource('/call/:id', {}, {
+      show: {
+        method: 'GET'
+      },
+      update: {
+        method: 'PUT',
+        params: {
+          id: '@id'
+        }
+      },
+      destroy: {
+        method: 'DELETE',
+        params: {
+          id: '@id'
+        }
       }
     });
   }

@@ -1,35 +1,43 @@
-(function(){
+(function() {
 
-  Dashboard.controller('AddCallController', function($scope, $http) {
+  Dashboard.controller('AddCallController', ['$scope', '$resource', 'Calls', 'Call', '$location',
+    function($scope, $resource, Calls, Call, $location) {
     
-    $scope.callInfo = {};
+    $scope.calls = [];
 
-    var addCall = function(info) {
-        info.callInfo.push(this.callInfo);
-        $scope.callInfo = {};
+    $scope.loadCall = function() {
+      $scope.calls.push(Calls.query());
+      console.log($scope.calls);
     };
 
-    // $scope.data = addedData.data;
-
-    var submitForm = function() {
-      return $http.post('./call/new').success(function(data) {
-        return clearFrom();
+    $scope.loadCall();
+    $scope.calls = Calls.query(); // Getting Call collection
+   
+    $scope.deleteCall = function(id, call) {
+      Call.destroy({
+        id: id
       });
+      for (var i = 0; i < $scope.calls.length; i++) {
+        if($scope.calls[i]["call"] === call) {
+          $scope.calls.splice(i, 1);
+        }
+      }
     };
 
+    $scope.save = function() {
+      Calls.create({
+        phone_number: $scope.phone_number,
+        category: $scope.category,
+        position: $scope.position,
+        sub_category: $scope.sub_category
+      });
+      $scope.calls.push($scope.call);
+      $scope.call = {};
+    };
 
-    var loadCalls = function() {
-        return $http.post('./call.json').success(function(data) {
-          $scope.data.calls = data;
-          return console.log('Successfully loaded calls.');
-        }).error(function() {
-          return console.error('Failed to load calls.');
-        });
-      };
-
-  });
+  }
+  ]);
       
-
   // From Code School
   // Dashboard.controller('ReviewController', function() {
   //     this.review = {};

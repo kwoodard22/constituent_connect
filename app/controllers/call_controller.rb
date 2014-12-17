@@ -19,7 +19,7 @@ class CallController < ApplicationController
     calls = Call.all
 
     respond_with(calls) do |format|
-      format.json { render :json => calls.as_json}
+      format.json { render json: calls.as_json }
     end
   end
 

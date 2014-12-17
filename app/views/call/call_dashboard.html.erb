@@ -5,7 +5,7 @@
 <div ng-app="Dashboard">
   <div class="col-md-4 info">
 
-    <div ng-controller="AddCallController">
+<!--     <div ng-controller="AddCallController"> -->
       <form name="addCallForm" ng-controller="AddCallController as addCallCtrl" ng-submit="addCallCtrl.addCall(info)" novalidate>
         <h3>Add Call</h3>
           <input type="text" class="form-control" ng-model="addCallCtrl.callInfo.phoneNum" required placeholder="Phone Number (i.e. 123-4566-7890)"><br>
@@ -23,7 +23,6 @@
           </blockquote>
           <button class="btn btn-primary" ng-click="addCall()">Submit</button>
         </form>
-    </div>
   </div>
 
 
