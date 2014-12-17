@@ -5,24 +5,25 @@
 <div ng-app="Dashboard">
   <div class="col-md-4 info">
 
-<!--     <div ng-controller="AddCallController"> -->
-      <form name="addCallForm" ng-controller="AddCallController as addCallCtrl" ng-submit="addCallCtrl.addCall(info)" novalidate>
+    <div ng-controller="AddCallController">
+      <form name="callForm" ng-submit="save()">
         <h3>Add Call</h3>
-          <input type="text" class="form-control" ng-model="addCallCtrl.callInfo.phoneNum" required placeholder="Phone Number (i.e. 123-4566-7890)"><br>
-          <input type="text" class="form-control" ng-model="addCallCtrl.callInfo.category" required placeholder="Category"><br>
-          <input type="text" class="form-control" ng-model="addCallCtrl.callInfo.subCategory" placeholder="Sub-Category"><br>
-          <select ng-model="addCallCtrl.callInfo.position" required>
+          <input type="text" class="form-control" ng-model="call.phone_number" required placeholder="Phone Number (i.e. 123-4566-7890)"><br>
+          <input type="text" class="form-control" ng-model="call.category" required placeholder="Category"><br>
+          <input type="text" class="form-control" ng-model="call.sub_category" required placeholder="Sub-Category"><br>
+          <select ng-model="call.position" required>
             <option value="In Favor Of">In Favor Of</option>
             <option value="Opposed">Opposed</option>
           </select><br><br>
           <blockquote>
-            <b>Phone:</b>  {{ addCallCtrl.callInfo.phoneNum}}<br>
-            <b>Category:</b>  {{ addCallCtrl.callInfo.category }}<br>
-            <b>Sub-Category:</b>  {{ addCallCtrl.callInfo.subCategory}}<br>
-            <b>Position:</b>  {{ addCallCtrl.callInfo.position}}<br>
+            <b>Phone:</b>  {{ call.phone_number}}<br>
+            <b>Category:</b>  {{ call.category }}<br>
+            <b>Sub-Category:</b>  {{ call.sub_category}}<br>
+            <b>Position:</b>  {{ call.position}}<br>
           </blockquote>
-          <button class="btn btn-primary" ng-click="addCall()">Submit</button>
+          <button class="btn btn-primary" type="submit">Submit</button>
         </form>
+      </div>
   </div>
 
 
@@ -50,7 +51,7 @@
         <h3 ng-show="panel.isSelected(3)">Caller Info</h3>
         <h1>{{test}}</h1>
         <div class="panel" ng-show="panel.isSelected(1)">          
-          <ul class="list-group" ng-repeat="call in calls | limitTo:10">
+          <ul class="list-group" ng-repeat="call in calls.slice().reverse() | limitTo:10">
             <li class="list-group-item">
               <b>{{call.category}}</b><br>
               {{call.sub_category}}<br>

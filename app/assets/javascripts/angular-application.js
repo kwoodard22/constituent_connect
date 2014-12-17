@@ -11,8 +11,7 @@ Dashboard.factory('Calls', ['$resource',
   function($resource) {
     return $resource('/call.json', {}, {
       query: {
-        method:'GET',
-        isArray: true
+        method:'GET'
       },
       create: {
         method: 'POST'

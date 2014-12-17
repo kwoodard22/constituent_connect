@@ -11,7 +11,7 @@
     };
 
     $scope.loadCall();
-    $scope.calls = Calls.query(); // Getting Call collection
+    $scope.calls.push(Calls.query()); // Getting Call collection
    
     $scope.deleteCall = function(id, call) {
       Call.destroy({
@@ -26,12 +26,17 @@
 
     $scope.save = function() {
       Calls.create({
+        phone_number: $scope.call.phone_number,
+        category: $scope.call.category,
+        position: $scope.call.position,
+        sub_category: $scope.call.sub_category
+      });
+      $scope.calls.push({
         phone_number: $scope.phone_number,
         category: $scope.category,
         position: $scope.position,
         sub_category: $scope.sub_category
       });
-      $scope.calls.push($scope.call);
       $scope.call = {};
     };
 
