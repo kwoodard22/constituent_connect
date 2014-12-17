@@ -1,15 +1,5 @@
-
-<div class="col-md-6 bills-table">
-    <h2>Active Bills</h2>
-    <table id="bills" class="table table-bordered">
-      <tr>
-        <th>Bill Number</th>
-        <th>Short Title</th>
-        <th>Official Title</th>
-      </tr>
-    </table>
-</div>
-
-<div class="col-md-6">
-  <%= pie_chart Call.group(:category).count %>
+<div class="report">
+  <div class="container-fluid">
+    <%= bar_chart Call.group(:category).count.sort, height: "100vh" %>
+  </div>
 </div>

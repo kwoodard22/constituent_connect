@@ -2,6 +2,7 @@
   Dashboard.controller('AddCallController', function($scope) {
     $scope.phoneNum = "";
     $scope.category = "";
+
   });
 
   // From Code School

@@ -1,16 +1,22 @@
 (function(){
 
 // Wrote from http://asanderson.org/posts/2013/08/19/bootstrapping-angular-rails-part-3.html
-  Dashboard.controller('CallLogController', function($scope, $location) {
+  Dashboard.controller('CallLogController', function($scope, $location, $http, callData) {
+      $scope.data = callData.data;
       
-      $scope.data = {
-        calls: [{category: 'Loading calls...', phone_number: ''}]
+      var loadCalls = function() {
+        return $http.get('./call.json').success(function(data) {
+          $scope.data.calls = data;
+          return console.log('Successfully loaded calls.');
+        }).error(function() {
+          return console.error('Failed to load calls.');
+        });
       };
 
       return $scope.viewCall = function(callId) {
-        return $location.url('/call/ + callId');
+        return $location.url('/call/' + callId);
       };
-  
+
   });
 
 // Controller to load data into panel depending on tab clicked
@@ -27,19 +33,12 @@
   });
 
 // TEST/DUMMY controller loading fake call data to test app
-  Dashboard.controller('CallLogControllerTest', function() {
-      this.calls = allCalls;
+  Dashboard.controller('CallLogControllerTest', function($scope, $http) {
+    $http.get('/call.json').success(function(data){
+      $scope.calls = data.call;
     });
-
-    var allCalls = [{
-      category: 'Love',
-      phoneNumber: '1234567890'
-    },
-    {
-      category: 'Peace',
-      phoneNumber: '0101010101'
-    }];
-
+  
+  });
 })();
 
 

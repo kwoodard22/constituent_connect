@@ -1,7 +1,9 @@
+
 .recent-calls {
   background-color: #BCBCBC;
   border-radius: 10px;
-  height: 80vh;
+  min-height: 80%;
+  height: auto;
   margin-bottom: 10%;
 }
 
@@ -16,3 +18,4 @@
 .ng-valid.ng-dirty {
   border-color: #78FA89;
 }
+

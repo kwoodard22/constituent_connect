@@ -1,6 +1,10 @@
 class CallController < ApplicationController
   respond_to :json
 
+  def new
+    @call = Call.new
+  end
+
   def call_dashboard
     @call = Call.new
     @user = current_user
