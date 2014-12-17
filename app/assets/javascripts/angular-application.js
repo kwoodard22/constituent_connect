@@ -4,7 +4,22 @@
 //= require_tree ./angular/controllers
 
 
-var Dashboard = angular.module('Dashboard', []);
+var Dashboard = angular.module('Dashboard', ['ngResource']);
+
+Dashboard.factory('Call', ['$resource',
+  function($resource) {
+    return $resource('/call.json', {}, {
+      query: {
+        method:'GET',
+        isArray: true
+      },
+      create: {
+        method: 'POST'
+      }
+    });
+  }
+]);
+
 
 // ROUTE SHOULD BE USED FOR VIEWS - http://asanderson.org/posts/2013/06/23/bootstrapping-angular-rails-part-2.html
 // Dashboard.config(['$routeProvider', function($routeProvider) {
