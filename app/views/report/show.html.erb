@@ -1,6 +1,5 @@
-
-<div>
-    <pre id="output">
-        <!-- content will appear here -->
-    </pre>
+<div class="report">
+  <div class="container-fluid">
+    <%= bar_chart Call.group(:category).count.sort, height: "100vh" %>
+  </div>
 </div>

@@ -1,10 +1,25 @@
+
 .recent-calls {
-  background-color: gray;
+  background-color: #BCBCBC;
   border-radius: 10px;
-  height: 80vh;
+  min-height: 80%;
+  height: auto;
   margin-bottom: 10%;
+}
+
+.title {
+  padding-left: 50px;  
 }
 
 .recent-calls ul {
   list-style: none;
 }
+
+.ng-invalid.ng-dirty {
+  border-collor: #FA787E;
+}
+
+.ng-valid.ng-dirty {
+  border-color: #78FA89;
+}
+

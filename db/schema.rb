@@ -21,6 +21,15 @@ ActiveRecord::Schema.define(version: 20141215171121) do
     t.datetime "updated_at"
     t.integer  "user_id"
     t.string   "phone_number"
+<<<<<<< HEAD
+    t.string   "category"
+    t.string   "position"
+    t.string   "sub_category"
+  end
+
+  create_table "categories", force: true do |t|
+=======
+>>>>>>> 2be646659606a2af92ed74ecf17fb1c654a4dbaf
     t.string   "category"
     t.string   "position"
     t.string   "sub_category"
@@ -48,7 +57,6 @@ ActiveRecord::Schema.define(version: 20141215171121) do
     t.string   "name"
     t.integer  "office_id"
     t.boolean  "approved",               default: false, null: false
-    t.boolean  "admin",                  default: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

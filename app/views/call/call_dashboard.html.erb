@@ -3,51 +3,84 @@
 </div>
 
 <div ng-app="Dashboard">
-  <form>
-    <div ng-controller="addCallController">
-      <div class="col-md-4">
-        <h3>Add Call</h3>
-          <input type="text" class="form-control" ng-model="phoneNum" placeholder="Phone Number (i.e. 123-4566-7890)"><br>
-          <input type="text" class="form-control" ng-model="category" placeholder="Category"><br>
-          <input type="text" class="form-control" ng-model="subCategory" placeholder="Sub-Category"><br>
-          <input type="text" class="form-control" ng-model="forOrAgainst" placeholder="For or Against"><br>
-          {{ phoneNum }}<br>
-          {{ category }}<br>
-          {{ subCategory }}<br>
-          {{ forOrAgainst }}<br>
-          <input type="submit" value="Add">
-      </div>  
-    </div>
-  </form>
+  <div class="col-md-4 info">
 
-  <div class="col-md-4">
+    <div ng-controller="AddCallController">
+      <form name="callForm" ng-submit="save()">
+        <h3>Add Call</h3>
+          <input type="text" class="form-control" ng-model="call.phone_number" required placeholder="Phone Number (i.e. 123-4566-7890)"><br>
+          <input type="text" class="form-control" ng-model="call.category" required placeholder="Category"><br>
+          <input type="text" class="form-control" ng-model="call.sub_category" required placeholder="Sub-Category"><br>
+          <select ng-model="call.position" required>
+            <option value="In Favor Of">In Favor Of</option>
+            <option value="Opposed">Opposed</option>
+          </select><br><br>
+          <blockquote>
+            <b>Phone:</b>  {{ call.phone_number}}<br>
+            <b>Category:</b>  {{ call.category }}<br>
+            <b>Sub-Category:</b>  {{ call.sub_category}}<br>
+            <b>Position:</b>  {{ call.position}}<br>
+          </blockquote>
+          <button class="btn btn-primary" type="submit">Submit</button>
+        </form>
+      </div>
   </div>
 
-  <div ng-controller="callLogController">
-    <p> {{ 4 + 6 }}</p>
-    <div class="col-md-4">
+
+
+  <div class="col-md-2">
+  </div>
+
+  <div ng-controller="CallLogControllerTest as log">
+    <div class="col-md-6">
       <div class="container-fluid recent-calls">
-        <h3>Recent Calls</h3>
-        <ul>
-          <li ng-repeat='call in calls'> 
-            {{ call.category }} 
-          </li>
-        </ul>
+        <section ng-init="tab = 1" ng-controller="PanelController as panel">
+          <ul class="nav nav-pills">
+            <li ng-class="{ active: panel.isSelected(1) }"> 
+              <a href ng-click="panel.selectTab(1)">Calls</a> 
+            </li>
+            <li ng-class="{ active: panel.isSelected(2) }">
+              <a href ng-click="panel.selectTab(2)">Bills</a> 
+            </li>
+            <li ng-class="{ active: panel.isSelected(3) }"> 
+              <a href ng-click="panel.selectTab(3)">Caller</a>
+            </li>
+          </ul>
+        <h3 ng-show="panel.isSelected(1)">Recent Calls</h3>
+        <h3 ng-show="panel.isSelected(2)">Active Bills</h3>
+        <h3 ng-show="panel.isSelected(3)">Caller Info</h3>
+        <h1>{{test}}</h1>
+        <div class="panel" ng-show="panel.isSelected(1)">          
+          <ul class="list-group" ng-repeat="call in calls.slice().reverse() | limitTo:10">
+            <li class="list-group-item">
+              <b>{{call.category}}</b><br>
+              {{call.sub_category}}<br>
+              <em>{{call.created_at | date:'MM/dd/yyyy @ h:mma'}}</em>
+            </li>
+          </ul>
+        </div>
+
+        <div class="panel" ng-show="panel.isSelected(2)">
+          <h2>Active Bills</h2>
+            <table id="bills" class="table table-bordered">
+              <tr>
+                <th>Bill Number</th>
+                <th>Short Title</th>
+                <th>Official Title</th>
+              </tr>
+            </table>
+        </div>
+        <div class="form" ng-show="panel.isSelected(3)">
+          <input type="text" class="form-control" ng-model="reviewCtrl.review.phoneNum" required placeholder="Phone Number"><br>
+          <input type="text" class="form-control" ng-model="reviewCtrl.review.category" required placeholder="Name"><br>
+          <input type="text" class="form-control" ng-model="reviewCtrl.review.subCategory" placeholder="E-mail"><br>
+          <input type="text" class="form-control" ng-model="reviewCtrl.review.subCategory" placeholder="City"><br>
+          <button class="btn btn-primary" ng-click="saveCaller()">Save</button>
+        </div>
+        </section>
       </div>
     </div>
-  </div>  
+  </div>     
+  
 </div>
 
-<!-- 
-<div class="col-md-4">
-  <div class="container-fluid recent-calls">
-    <h3>Recent Calls</h3>
-    <ul>
-      @calls.each do |call| %>
-        <li> call.category.category %></li>
-        <li> number_to_phone(call.phone_number) %></li>
-       end %>
-    </ul>
-  </div>
-</div> 
--->

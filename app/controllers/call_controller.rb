@@ -1,5 +1,9 @@
 class CallController < ApplicationController
-  respond_to :json
+  respond_to :html, :json
+
+  def new
+    @call = Call.new
+  end
 
   def call_dashboard
     @call = Call.new
@@ -12,22 +16,18 @@ class CallController < ApplicationController
   end
 
   def index
-    respond_with Call.all
+    calls = Call.all
+
+    respond_to do |format|
+      format.html
+      format.json { render json: calls.as_json }
+    end
   end
 
   def create
     @call = Call.new(call_params)
     @call.user_id = current_user.id
-
-    respond_to do |format|
-      if @call.save
-        format.html { redirect_to dashboard_path, notice: 'Call was successfully created.' }
-        format.json { render :show, status: :created, address: @call }
-      else
-        format.html { render :new }
-        format.json { render json: @call.errors, status: :unprocessable_entity }
-      end
-    end
+    @call.save
   end
   
   def update
@@ -45,9 +45,7 @@ class CallController < ApplicationController
   private
 
   def call_params
-    params.require(:call).permit(:phone_number, 
-                                 category_attributes: [:category], 
-                                 sub_category_attributes: [:sub_category])
+    params.require(:call).permit(:phone_number, :category, :sub_category, :position)
   end
 
 end
