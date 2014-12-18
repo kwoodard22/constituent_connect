@@ -5,7 +5,7 @@
 <div ng-app="Dashboard">
   <div class="col-md-4 info">
 
-    <div ng-controller="AddCallController">
+    <div ng-controller="CallListController">
       <form name="callForm" ng-submit="save()">
         <h3>Add Call</h3>
           <input type="text" class="form-control" ng-model="call.phone_number" required placeholder="Phone Number (i.e. 123-4566-7890)"><br>
@@ -31,7 +31,7 @@
   <div class="col-md-2">
   </div>
 
-  <div ng-controller="CallLogControllerTest as log">
+  
     <div class="col-md-6">
       <div class="container-fluid recent-calls">
         <section ng-init="tab = 1" ng-controller="PanelController as panel">
@@ -50,8 +50,9 @@
         <h3 ng-show="panel.isSelected(2)">Active Bills</h3>
         <h3 ng-show="panel.isSelected(3)">Caller Info</h3>
         <h1>{{test}}</h1>
+      <div ng-controller="CallListController">
         <div class="panel" ng-show="panel.isSelected(1)">          
-          <ul class="list-group" ng-repeat="call in calls.slice().reverse() | limitTo:10">
+          <ul class="list-group" ng-repeat="call in calls[0].call.slice().reverse() | limitTo:10">
             <li class="list-group-item">
               <b>{{call.category}}</b><br>
               {{call.sub_category}}<br>
@@ -59,6 +60,7 @@
             </li>
           </ul>
         </div>
+      </div>
 
         <div class="panel" ng-show="panel.isSelected(2)">
           <h2>Active Bills</h2>
@@ -71,15 +73,15 @@
             </table>
         </div>
         <div class="form" ng-show="panel.isSelected(3)">
-          <input type="text" class="form-control" ng-model="reviewCtrl.review.phoneNum" required placeholder="Phone Number"><br>
-          <input type="text" class="form-control" ng-model="reviewCtrl.review.category" required placeholder="Name"><br>
-          <input type="text" class="form-control" ng-model="reviewCtrl.review.subCategory" placeholder="E-mail"><br>
-          <input type="text" class="form-control" ng-model="reviewCtrl.review.subCategory" placeholder="City"><br>
+          <input type="text" class="form-control" ng-model="call.phone_number" required placeholder="Phone Number"><br>
+          <input type="text" class="form-control" ng-model="call.category" required placeholder="Name"><br>
+          <input type="text" class="form-control" ng-model="call.subCategory" placeholder="E-mail"><br>
+          <input type="text" class="form-control" ng-model="call.subCategory" placeholder="City"><br>
           <button class="btn btn-primary" ng-click="saveCaller()">Save</button>
         </div>
         </section>
       </div>
-    </div>
+
   </div>     
   
 </div>

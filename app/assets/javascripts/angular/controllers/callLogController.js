@@ -14,10 +14,10 @@
   });
 
 // TEST/DUMMY controller loading fake call data to test app
-  Dashboard.controller('CallLogControllerTest', function($scope, $http) {
-    $http.get('/call.json').success(function(data){
-      $scope.calls = data.call;
-    });
+//   Dashboard.controller('CallLogControllerTest', function($scope, $http) {
+//     $http.get('/call.json').success(function(data){
+//       $scope.calls = data.call;
+//     });
   
-  });
+//   });
 })();
