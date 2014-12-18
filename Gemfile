@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-
+ruby '2.1.2'
 
 gem 'rails', '4.1.6'
 gem 'pg'
@@ -13,6 +13,8 @@ gem 'devise', '~> 3.4.1'
 gem 'bootstrap-sass', '~> 3.3.1.0'
 gem 'chartkick', '~> 1.3.2'
 gem 'bootstrap_form'
+gem 'unicorn'
+gem 'rails_12factor', '~> 0.0.3'
 gem 'angularjs-rails', '~> 1.3.36'
 gem 'active_model_serializers', '~> 0.9.2'
 gem 'faker', '~> 1.4.3'

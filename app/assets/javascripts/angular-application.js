@@ -1,5 +1,4 @@
 //= require_self
-//= require_tree ./angular/templates
 //= require_tree ./angular/services
 //= require_tree ./angular/controllers
 

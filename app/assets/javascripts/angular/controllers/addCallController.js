@@ -1,6 +1,6 @@
 (function() {
 
-  Dashboard.controller('AddCallController', ['$scope', '$resource', 'Calls', 'Call', '$location',
+  Dashboard.controller('CallListController', ['$scope', '$resource', 'Calls', 'Call', '$location',
     function($scope, $resource, Calls, Call, $location) {
     
     $scope.calls = [];
@@ -11,7 +11,7 @@
     };
 
     $scope.loadCall();
-    $scope.calls.push(Calls.query()); // Getting Call collection
+    // $scope.calls.push(Calls.query()); // Getting Call collection
    
     $scope.deleteCall = function(id, call) {
       Call.destroy({
